@@ -11,7 +11,7 @@ import "@fontsource/poppins/900.css";
 import "./globals.css";
 
 export const metadata = {
-  title: "Dashboard Odontológico",
+  title: "Dental Calderon",
   description: "Sistema de gestión para consultorio dental",
 };
 

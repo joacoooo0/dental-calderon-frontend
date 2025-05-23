@@ -3,56 +3,112 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "../lib/auth";
+import dentalLogo from "../assets/jpg/dentalLogo.jpg";
+
+// Elimina los imports de SVG
 
 interface MenuItem {
   href: string;
   label: string;
+  icon: string;
 }
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const menuItems: MenuItem[] = [
-    { href: "/dashboard", label: "Inicio" },
-    { href: "/dashboard/consultas", label: "Consultas" },
-    { href: "/dashboard/tratamiento", label: "Tratamientos" },
-    { href: "/dashboard/citas", label: "Citas" },
-    { href: "/dashboard/pacientes", label: "Pacientes" },
-    { href: "/dashboard/historia", label: "Historia" },
-    { href: "/dashboard/evolucion", label: "Evolucion" },
-    { href: "/dashboard/presupuesto", label: "Presupuesto" },
-    { href: "/dashboard/pagos", label: "Pagos" },
-  ];
-
   const handleLogout = () => {
     console.log("Sidebar: Iniciando cierre de sesión");
-    logout(); // Eliminar la cookie de autenticación
+    logout();
     console.log("Sidebar: Redirigiendo a /login");
-    router.push("/login"); // Redirigir al login
+    router.push("/login");
   };
 
   return (
-    <div className="w-64 bg-white h-full shadow-lg">
-      <div className="p-4">
-        <h2 className="text-xl font-bold text-gray-800">Menú</h2>
+    <div className="w-56 bg-[#041f5c] h-full shadow-lg">
+      <div className="px-6 py-4 flex flex-col items-center justify-center gap-y-3">
+        <img
+          src={dentalLogo.src}
+          alt="Logo del Consultorio Dental Calderon 2025"
+          className="w-30 h-30 rounded-full"
+        />
+        <h2 className="text-xl font-bold text-white">Dental Calderon</h2>
       </div>
-      <nav className="mt-6">
-        {menuItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`block px-4 py-2 text-gray-600 hover:bg-gray-200 ${
-              pathname === item.href ? "bg-blue-100 text-blue-600" : ""
-            }`}
-          >
-            {item.label}
-          </Link>
-        ))}
+      <nav className="mt-6 space-y-2 px-4 text-white flex-col flex">
+        <Link
+          href="/dashboard/pacientes"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img src="/svg/pacienteIcono.svg" alt="" className="invert w-5 h-5" />
+          Paciente
+        </Link>
+        <Link
+          href="/dashboard/consultas"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img src="/svg/consultaIcono.svg" alt="" className="invert w-5 h-5" />
+          Consultas
+        </Link>
+        <Link
+          href="/dashboard/tratamiento"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img
+            src="/svg/tratamientoIcono.svg"
+            alt=""
+            className="invert w-5 h-5"
+          />
+          Tratamientos
+        </Link>
+        <Link
+          href="/dashboard/citas"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img src="/svg/citasIcono.svg" alt="" className="invert w-5 h-5" />
+          Citas
+        </Link>
+        <Link
+          href="/dashboard/historia"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img src="/svg/historiaIcono.svg" alt="" className="invert w-5 h-5" />
+          Historias
+        </Link>
+        <Link
+          href="/dashboard/evolucion"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img
+            src="/svg/evolucionIcono.svg"
+            alt=""
+            className="invert w-5 h-5"
+          />
+          Evolución
+        </Link>
+        <Link
+          href="/dashboard/presupuesto"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img
+            src="/svg/presupuestoIcono.svg"
+            alt=""
+            className="invert w-5 h-5"
+          />
+          Presupuesto
+        </Link>
+        <Link
+          href="/dashboard/pagos"
+          className="flex gap-x-2 items-center hover:bg-[#576992] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
+        >
+          <img src="/svg/pagosIcono.svg" alt="" className="invert w-5 h-5" />
+          Pagos
+        </Link>
+
         <button
           onClick={handleLogout}
-          className="block px-4 py-2 text-red-600 hover:bg-gray-200 w-full text-left mt-4"
+          className="flex gap-x-2 items-center hover:bg-[#925757] px-2 py-2 rounded-md focus:bg-[#576992] text-sm"
         >
+          <img src="/svg/powerIcon.svg" alt="" className="w-5 h-5 invert" />
           Cerrar Sesión
         </button>
       </nav>

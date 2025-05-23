@@ -24,9 +24,7 @@ export default function Login() {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    console.log("Login Page: Verificando si el usuario está autenticado");
     if (isAuthenticated()) {
-      console.log("Login Page: Usuario autenticado, redirigiendo a /dashboard");
       router.push("/dashboard");
     } else {
       console.log(
@@ -48,7 +46,7 @@ export default function Login() {
 
       login(data); // data debe contener el token
       console.log("Ingreso exitoso");
-      router.push("/dashboard");
+      router.push("/dashboard/pacientes");
     } catch (err: any) {
       console.error("Error al iniciar sesión:", err);
       setError(`Credenciales inválidas o error en el servidor: ${err.message}`);
@@ -77,7 +75,7 @@ export default function Login() {
                 value={userAdmin}
                 onChange={(e) => setUserAdmin(e.target.value)}
                 className="h-10 w-56 mt-2 text-white placeholder-white"
-                placeholder="Ingresa tu usuario"
+                placeholder=""
               />
             </div>
             <div>
@@ -87,7 +85,7 @@ export default function Login() {
                 value={contrasena}
                 onChange={(e) => setContrasena(e.target.value)}
                 className="h-10 w-56 mt-2 text-white placeholder-white"
-                placeholder="Ingresa tu contraseña"
+                placeholder=""
               />
             </div>
             <div className="flex items-center justify-end">
